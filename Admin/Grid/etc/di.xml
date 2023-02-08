@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <virtualType name="AdminGridJobFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AdminGridJobFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Admin\Grid\Model\ResourceModel\Job\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">AdminGridJobFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Admin\Grid\Model\ResourceModel\Job\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">admin_grid_data</argument>
+            <argument name="eventPrefix" xsi:type="string">admin_grid_job_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">job_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Admin\Grid\Model\ResourceModel\Job</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="admin_grid_job_listing_data_source" xsi:type="string">Admin\Grid\Model\ResourceModel\Job\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Admin\Grid\Ui\Component\MassAction\Status\Options">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">*/*/MassStatus</item>
+                <item name="paramName" xsi:type="string">status</item>
+                <item name="confirm" xsi:type="array">
+                    <item name="title" xsi:type="string" translatable="true">Change Status</item>
+                    <item name="message" xsi:type="string" translatable="true">Are you sure to change selected record status?</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

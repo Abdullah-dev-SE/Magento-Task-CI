@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="admin_grid_data" resource="default" engine="innodb" comment="Admin Grid Table">
+		<column xsi:type="smallint" name="job_id" padding="6" unsigned="true" nullable="false" identity="true" comment="ID"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="job_id"/>
+		</constraint>
+		<column name="first_name" nullable="false" xsi:type="text" comment="First Name"/>
+		<column name="last_name" nullable="false" xsi:type="text" comment="Last Name"/>
+        	<column name="email" nullable="false" xsi:type="text" comment="Email"/>
+        	<column name="status" nullable="false" xsi:type="text" comment="Status"/>
+	</table>
+</schema>
